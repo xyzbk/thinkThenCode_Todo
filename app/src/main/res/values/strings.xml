@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">todoProject</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="todo_icon">TODO_ICON</string>
+    <string name="log_in_and_tune_in">Log in and tune in!</string>
 </resources>

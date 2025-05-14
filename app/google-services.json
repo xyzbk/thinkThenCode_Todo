@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "216589646128",
+    "firebase_url": "https://todoproject-a97ca-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "todoproject-a97ca",
+    "storage_bucket": "todoproject-a97ca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216589646128:android:3801752d976742e46a30f5",
+        "android_client_info": {
+          "package_name": "com.example.todoproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyKGivB388_by4kpLs32ORL0y-1tpb9VE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

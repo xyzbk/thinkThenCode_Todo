@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:layout_marginTop="60dp">
+
+
+    <!-- User Name Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👤"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- Email Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📧"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvUserEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- Completed Tasks Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✅"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed Tasks"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- Pending Tasks Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            android:elevation="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕒"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvPending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending Tasks"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- Logout Button -->
+        <TextView
+            android:id="@+id/tvLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="100dp"
+            android:gravity="center"
+            android:text="Logout"
+            android:textColor="#D32F2F"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:paddingHorizontal="16dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+
+    </LinearLayout>
+</ScrollView>

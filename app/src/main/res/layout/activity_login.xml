@@ -37,7 +37,7 @@
         app:layout_constraintStart_toStartOf="@id/dot1"
         app:layout_constraintTop_toBottomOf="@id/dot2" />
 
-    <!-- New Title -->
+    <!-- Title -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -61,9 +61,7 @@
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-
-    <!-- Email Field -->
-
+    <!-- Welcome -->
     <TextView
         android:id="@+id/welcomeBack"
         android:layout_width="wrap_content"
@@ -77,6 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitle" />
 
+    <!-- Email -->
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="0dp"
@@ -92,11 +91,10 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcomeBack" />
 
-    <!-- Password Field -->
+    <!-- Password -->
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="0dp"
@@ -112,23 +110,35 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddress" />
 
-    <!-- Sign Up Button with Transparent Background -->
-    <Button
-        android:id="@+id/signUpBtn"
-        android:layout_width="70dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-        android:text="Sign up"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+    <!-- Remember Me -->
+    <CheckBox
+        android:id="@+id/rememberMeCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember Me"
+        android:textColor="#000000"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@id/editTextTextPassword"
         app:layout_constraintTop_toBottomOf="@id/editTextTextPassword" />
 
-    <!-- Login Button -->
+    <!-- Sign Up -->
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:text="Don't have an account? Register now!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#2196F3"
+        app:layout_constraintStart_toStartOf="@id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@id/loginBtn" />
+
+    <!-- Login -->
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="353dp"
@@ -137,7 +147,7 @@
         android:background="@drawable/btn_get_started"
         android:text="Login"
         android:textColor="#F8F4F4"
-        app:layout_constraintStart_toStartOf="@id/signUpBtn"
-        app:layout_constraintTop_toBottomOf="@id/signUpBtn" />
+        app:layout_constraintStart_toStartOf="@id/rememberMeCheckBox"
+        app:layout_constraintTop_toBottomOf="@id/rememberMeCheckBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

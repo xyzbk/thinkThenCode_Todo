@@ -75,4 +75,6 @@ dependencies {
     // Activity/Fragment KTX (keep these)
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
+    implementation("com.google.android.material:material:1.12.0")
 }

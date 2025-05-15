@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,50 +21,51 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. Set username from intent
-        val username = intent.getStringExtra("username")
+        val username = intent.getStringExtra("username") ?: "User"
+        val email = intent.getStringExtra("email") ?: "email@example.com"
+        val completed = intent.getIntExtra("completedTasks", 0)
+        val pending = intent.getIntExtra("pendingTasks", 0)
+
         findViewById<TextView>(R.id.usernameTextView).text = "Hey, $username"
 
-        // 2. Initialize views
         bottomNav = findViewById(R.id.bottomNavigationView)
         fab = findViewById(R.id.fabAddTask)
 
-        // 3. Setup bottom navigation
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> {
-                    Toast.makeText(this, "Home selected", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.nav_add -> {
-                    Toast.makeText(this, "Add selected", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.nav_profile -> {
-                    Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
+                    val view = layoutInflater.inflate(R.layout.profile_info, null)
+                    val container = findViewById<ViewGroup>(R.id.mainContainer)
+                    container.removeAllViews()
+                    container.addView(view)
+
+                    view.findViewById<TextView>(R.id.tvUserName).text = username
+                    view.findViewById<TextView>(R.id.tvUserEmail).text = email
+                    view.findViewById<TextView>(R.id.tvCompleted).text = "Completed Tasks: $completed"
+                    view.findViewById<TextView>(R.id.tvPending).text = "Pending Tasks: $pending"
                     true
                 }
                 else -> false
             }
         }
 
-        // 4. Setup FAB
-        fab.setOnClickListener {
-            Toast.makeText(this, "FAB clicked - Add Task", Toast.LENGTH_SHORT).show()
-        }
+        fab.setOnClickListener {}
 
-        // 5. Initialize and setup days RecyclerView
         setupDayCards()
     }
 
-    // Data class for day items
     data class DayItem(
         val dayName: String,
         val dayNumber: String,
         val isToday: Boolean = false
     )
 
-    // Adapter for day cards
     class DaysAdapter(private val days: List<DayItem>) :
         RecyclerView.Adapter<DaysAdapter.DayViewHolder>() {
 
@@ -87,8 +85,6 @@ class MainActivity : AppCompatActivity() {
             val day = days[position]
             holder.dayName.text = day.dayName
             holder.dayNumber.text = day.dayNumber
-
-            // Highlight today's card
             if (day.isToday) {
                 holder.cardView.setBackgroundResource(R.drawable.today_card_bg)
             } else {
@@ -101,49 +97,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupDayCards() {
         val daysRecyclerView = findViewById<RecyclerView>(R.id.daysRecyclerView)
-        daysRecyclerView.layoutManager = LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
-
+        daysRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         daysRecyclerView.adapter = DaysAdapter(getDaysList())
     }
 
     private fun getDaysList(): List<DayItem> {
-        val calendar = Calendar.getInstance()
+        val calendar = java.util.Calendar.getInstance()
         val days = mutableListOf<DayItem>()
-        val dateFormatDay = SimpleDateFormat("EEE", Locale.getDefault())
-        val dateFormatDate = SimpleDateFormat("d", Locale.getDefault())
+        val dateFormatDay = java.text.SimpleDateFormat("EEE", java.util.Locale.getDefault())
+        val dateFormatDate = java.text.SimpleDateFormat("d", java.util.Locale.getDefault())
 
-        // Yesterday (-1 day)
-        calendar.add(Calendar.DAY_OF_YEAR, -1)
-        days.add(DayItem(
-            dateFormatDay.format(calendar.time),
-            dateFormatDate.format(calendar.time)
-        ))
+        calendar.add(java.util.Calendar.DAY_OF_YEAR, -1)
+        days.add(DayItem(dateFormatDay.format(calendar.time), dateFormatDate.format(calendar.time)))
 
-        // Today (reset +1 day)
-        calendar.add(Calendar.DAY_OF_YEAR, 1)
-        days.add(DayItem(
-            dateFormatDay.format(calendar.time),
-            dateFormatDate.format(calendar.time),
-            true // Mark as today
-        ))
+        calendar.add(java.util.Calendar.DAY_OF_YEAR, 1)
+        days.add(DayItem(dateFormatDay.format(calendar.time), dateFormatDate.format(calendar.time), true))
 
-        // Tomorrow (+1 day)
-        calendar.add(Calendar.DAY_OF_YEAR, 1)
-        days.add(DayItem(
-            dateFormatDay.format(calendar.time),
-            dateFormatDate.format(calendar.time)
-        ))
+        calendar.add(java.util.Calendar.DAY_OF_YEAR, 1)
+        days.add(DayItem(dateFormatDay.format(calendar.time), dateFormatDate.format(calendar.time)))
 
-        // Day after tomorrow (+1 day)
-        calendar.add(Calendar.DAY_OF_YEAR, 1)
-        days.add(DayItem(
-            dateFormatDay.format(calendar.time),
-            dateFormatDate.format(calendar.time)
-        ))
+        calendar.add(java.util.Calendar.DAY_OF_YEAR, 1)
+        days.add(DayItem(dateFormatDay.format(calendar.time), dateFormatDate.format(calendar.time)))
 
         return days
     }

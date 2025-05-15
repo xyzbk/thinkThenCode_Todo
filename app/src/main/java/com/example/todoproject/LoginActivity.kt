@@ -80,8 +80,12 @@ class LoginActivity : AppCompatActivity() {
                         email == dbEmail && password == dbPassword) {
                         found = true
                         Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_SHORT).show()
+
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.putExtra("username", username)
+                        intent.putExtra("email", dbEmail)
+                        intent.putExtra("completedTasks", 5) 
+                        intent.putExtra("pendingTasks", 2)
                         startActivity(intent)
                         finish()
                         return

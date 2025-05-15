@@ -1,9 +1,11 @@
 package com.example.todoproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -31,24 +33,40 @@ class MainActivity : AppCompatActivity() {
         bottomNav = findViewById(R.id.bottomNavigationView)
         fab = findViewById(R.id.fabAddTask)
 
+        val homeContent = findViewById<View>(R.id.homeContent)
+        val profileContent = findViewById<FrameLayout>(R.id.profileContent)
+
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> {
+                    homeContent.visibility = View.VISIBLE
+                    profileContent.visibility = View.GONE
+                    setupDayCards()
+                    findViewById<TextView>(R.id.usernameTextView).text = "Hey, $username"
                     true
                 }
                 R.id.nav_add -> {
                     true
                 }
                 R.id.nav_profile -> {
+                    homeContent.visibility = View.GONE
+                    profileContent.visibility = View.VISIBLE
+
                     val view = layoutInflater.inflate(R.layout.profile_info, null)
-                    val container = findViewById<ViewGroup>(R.id.mainContainer)
-                    container.removeAllViews()
-                    container.addView(view)
+                    profileContent.removeAllViews()
+                    profileContent.addView(view)
 
                     view.findViewById<TextView>(R.id.tvUserName).text = username
                     view.findViewById<TextView>(R.id.tvUserEmail).text = email
                     view.findViewById<TextView>(R.id.tvCompleted).text = "Completed Tasks: $completed"
                     view.findViewById<TextView>(R.id.tvPending).text = "Pending Tasks: $pending"
+
+                    view.findViewById<TextView>(R.id.tvLogout).setOnClickListener {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+
                     true
                 }
                 else -> false

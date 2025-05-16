@@ -7,6 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_marginBottom="30dp">
+
     <!-- HOME CONTENT WRAPPER -->
     <LinearLayout
         android:id="@+id/homeContent"
@@ -243,84 +249,28 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.7"
                     android:layout_height="wrap_content"
-                    android:text="Today's Task"
+                    android:text="Today's Tasks"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"/>
 
                 <TextView
                     android:id="@+id/todayTasksCount"
                     android:layout_width="0dp"
                     android:layout_weight="0.3"
                     android:layout_height="wrap_content"
-                    android:text="4"
+                    android:text="0"
                     android:gravity="end"
                     android:textSize="16sp"
-                    android:textColor="@android:color/darker_gray" />
+                    android:textColor="@android:color/darker_gray"/>
             </LinearLayout>
 
-            <!-- Task Item -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="375dp"
+            <!-- Dynamic Tasks RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/todayTasksRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginHorizontal="2dp"
-                android:elevation="4dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="@android:color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
-
-                    <!-- Task Icon -->
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/ic_task"
-                        android:contentDescription="Task Icon"
-                        app:tint="@color/black" />
-
-                    <!-- Task Info -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Buy groceries"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pending"
-                            android:textSize="14sp"
-                            android:textColor="@android:color/darker_gray" />
-                    </LinearLayout>
-
-                    <!-- Task Priority -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="High"
-                        android:textColor="@android:color/holo_red_dark"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <!-- Repeat the Task Item block for more static tasks -->
+                android:layout_marginTop="8dp"/>
         </LinearLayout>
 
 
@@ -333,6 +283,8 @@
             android:layout_weight="0"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <!-- PROFILE CONTENT -->
     <FrameLayout

@@ -337,6 +337,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    // to load tasks and the counter
     private fun loadTdyTasksCount() {
         val username = intent.getStringExtra("username") ?: return
         val today = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date())

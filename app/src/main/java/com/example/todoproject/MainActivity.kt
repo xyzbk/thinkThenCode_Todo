@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra("username") ?: "User"
         val email = intent.getStringExtra("email") ?: "email@example.com"
-        val completed = intent.getIntExtra("completedTasks", 0)
-        val pending = intent.getIntExtra("pendingTasks", 0)
 
         findViewById<TextView>(R.id.usernameTextView).text = "Hey, $username"
 
@@ -81,8 +79,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, AllTasksActivity::class.java).apply {
                         putExtra("username", username)
                         putExtra("email", email)
-                        putExtra("completedTasks", completed)
-                        putExtra("pendingTasks", pending)
                     })
                     true
                 }

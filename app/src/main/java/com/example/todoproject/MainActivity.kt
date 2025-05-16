@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fab: FloatingActionButton
 
     companion object {
-        private val PRIORITY_ORDER = mapOf(
+        public val PRIORITY_ORDER = mapOf(
             "High" to 1,
             "Medium" to 2,
             "Low" to 3
@@ -77,7 +77,15 @@ class MainActivity : AppCompatActivity() {
                     showAddTaskDialog()
                     true
                 }
-
+                R.id.nav_all_tasks -> {
+                    startActivity(Intent(this, AllTasksActivity::class.java).apply {
+                        putExtra("username", username)
+                        putExtra("email", email)
+                        putExtra("completedTasks", completed)
+                        putExtra("pendingTasks", pending)
+                    })
+                    true
+                }
                 R.id.nav_profile -> {
                     homeContent.visibility = View.GONE
                     profileContent.visibility = View.VISIBLE
@@ -88,9 +96,8 @@ class MainActivity : AppCompatActivity() {
 
                     view.findViewById<TextView>(R.id.tvUserName).text = username
                     view.findViewById<TextView>(R.id.tvUserEmail).text = email
-                    view.findViewById<TextView>(R.id.tvCompleted).text =
-                        "Completed Tasks: $completed"
-                    view.findViewById<TextView>(R.id.tvPending).text = "Pending Tasks: $pending"
+
+                    loadTtlTsksCount(view)
 
                     view.findViewById<TextView>(R.id.tvLogout).setOnClickListener {
                         val intent = Intent(this, LoginActivity::class.java)
@@ -337,7 +344,6 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    // to load tasks and the counter
     private fun loadTdyTasksCount() {
         val username = intent.getStringExtra("username") ?: return
         val today = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date())
@@ -379,6 +385,32 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(this@MainActivity, "Error loading tasks: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun loadTtlTsksCount(profileView: View) {
+        val username = intent.getStringExtra("username") ?: return
+        val database = FirebaseDatabase.getInstance().reference
+
+        database.child("tasks")
+            .orderByChild("username")
+            .equalTo(username)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val totalTasks = snapshot.childrenCount
+                    profileView.findViewById<TextView>(R.id.tvTotalTasks).text =
+                        "Total Tasks: $totalTasks"
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    profileView.findViewById<TextView>(R.id.tvTotalTasks).text =
+                        "Total Tasks: Error loading"
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Error loading tasks count: ${error.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
     }

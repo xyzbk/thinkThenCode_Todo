@@ -11,7 +11,7 @@ class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
 
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.taskName)
-        val status: TextView = view.findViewById(R.id.taskStatus)
+        val subText: TextView = itemView.findViewById(R.id.subText)
         val priority: TextView = view.findViewById(R.id.taskPriority)
     }
 
@@ -24,10 +24,23 @@ class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
         holder.name.text = task.name
-        holder.status.text = if (task.completed) "Completed" else "Pending"
+        holder.subText.text = task.description
         holder.priority.text = task.priority
 
-        // Set priority color
+        if (task.description.isEmpty()) {
+            holder.subText.visibility = View.GONE
+        } else {
+            holder.subText.visibility = View.VISIBLE
+        }
+
+        holder.subText.setOnClickListener {
+            if (holder.subText.maxLines == 2) {
+                holder.subText.maxLines = Integer.MAX_VALUE
+            } else {
+                holder.subText.maxLines = 2
+            }
+        }
+
         holder.priority.setTextColor(
             when (task.priority) {
                 "High" -> Color.RED

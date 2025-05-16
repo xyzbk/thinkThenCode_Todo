@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <!-- Colored Dots -->
     <View
         android:id="@+id/dot1"
         android:layout_width="12dp"
@@ -37,7 +36,6 @@
         app:layout_constraintStart_toStartOf="@id/dot1"
         app:layout_constraintTop_toBottomOf="@id/dot2" />
 
-    <!-- Title -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -61,7 +59,6 @@
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <!-- Welcome -->
     <TextView
         android:id="@+id/welcomeBack"
         android:layout_width="wrap_content"
@@ -75,7 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitle" />
 
-    <!-- Email -->
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="0dp"
@@ -88,13 +84,12 @@
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:padding="12dp"
-        android:textColor="#D9D8D8"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/welcomeBack" />
 
-    <!-- Password -->
     <EditText
         android:id="@+id/editTextTextPassword"
         android:layout_width="0dp"
@@ -113,7 +108,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextTextEmailAddress" />
 
-    <!-- Remember Me -->
     <CheckBox
         android:id="@+id/rememberMeCheckBox"
         android:layout_width="wrap_content"
@@ -124,7 +118,6 @@
         app:layout_constraintStart_toStartOf="@id/editTextTextPassword"
         app:layout_constraintTop_toBottomOf="@id/editTextTextPassword" />
 
-    <!-- Sign Up -->
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
@@ -138,7 +131,6 @@
         app:layout_constraintStart_toStartOf="@id/loginBtn"
         app:layout_constraintTop_toBottomOf="@id/loginBtn" />
 
-    <!-- Login -->
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="353dp"

@@ -21,16 +21,13 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        // Initialize Views
         nameEditText = findViewById(R.id.editTextName)
         emailEditText = findViewById(R.id.editTextEmail)
         passwordEditText = findViewById(R.id.editTextPassword)
         signUpBtn = findViewById(R.id.signUpBtn)
 
-        // Initialize Firebase DB reference
         database = FirebaseDatabase.getInstance().getReference("users")
 
-        // Button Click Listener
         signUpBtn.setOnClickListener {
             val name = nameEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
@@ -61,7 +58,6 @@ class SignUpActivity : AppCompatActivity() {
         database.child(userId).setValue(userMap).addOnSuccessListener {
             Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
 
-            // Redirect to login or main activity if needed
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()

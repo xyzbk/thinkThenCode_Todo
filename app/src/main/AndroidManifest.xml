@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TodoProject"
         tools:targetApi="31">
         <activity
+            android:name=".AllTasksActivity"
+            android:exported="false" />
+        <activity
             android:name=".GetStartedActivity"
             android:exported="true">
             <intent-filter>

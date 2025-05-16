@@ -1,4 +1,3 @@
-<!-- res/layout/item_day_card.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dayCard"

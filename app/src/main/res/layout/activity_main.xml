@@ -13,17 +13,12 @@
         android:fillViewport="true"
         android:layout_marginBottom="30dp">
 
-    <!-- HOME CONTENT WRAPPER -->
     <LinearLayout
         android:id="@+id/homeContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- Header Section -->
-
-        <!-- Tasks RecyclerView -->
-        <!-- Header Section -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
@@ -32,12 +27,11 @@
             android:padding="16dp"
             android:paddingBottom="24dp">
 
-            <!-- Username Text -->
             <TextView
                 android:id="@+id/usernameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
                 android:text="Username"
                 android:textColor="#95aeff"
                 android:textSize="17sp"
@@ -45,7 +39,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Welcome Text -->
             <TextView
                 android:id="@+id/TextView2"
                 android:layout_width="wrap_content"
@@ -57,17 +50,15 @@
                 app:layout_constraintStart_toStartOf="@id/usernameTextView"
                 app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
 
-            <!-- User Icon -->
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="59dp"
                 android:layout_height="54dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/user_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Search Bar -->
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/searchEditText"
                 android:layout_width="0dp"
@@ -77,7 +68,9 @@
                 android:drawableEnd="@drawable/ic_search"
                 android:drawablePadding="8dp"
                 android:hint="Search"
-                android:inputType="text"
+                android:inputType="none"
+                android:focusable="false"
+                android:clickable="false"
                 android:paddingStart="20dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#95aeff"
@@ -85,7 +78,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TextView2" />
 
-            <!-- Days RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/daysRecyclerView"
                 android:layout_width="wrap_content"
@@ -109,7 +101,6 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="0dp" />
 
-        <!-- Categories Section -->
         <LinearLayout
             android:id="@+id/categoriesLayout"
             android:layout_width="match_parent"
@@ -121,7 +112,6 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp">
 
-            <!-- Grocery -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -156,7 +146,6 @@
 
             </LinearLayout>
 
-            <!-- Learning -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -191,7 +180,6 @@
 
             </LinearLayout>
 
-            <!-- Other -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -227,7 +215,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Today Tasks Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -237,7 +224,6 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
-            <!-- Title Row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -265,15 +251,12 @@
                     android:textColor="@android:color/darker_gray"/>
             </LinearLayout>
 
-            <!-- Dynamic Tasks RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/todayTasksRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"/>
         </LinearLayout>
-
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasksRecyclerView"
@@ -286,14 +269,12 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- PROFILE CONTENT -->
     <FrameLayout
         android:id="@+id/profileContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
-    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddTask"
         android:layout_width="wrap_content"
@@ -304,7 +285,6 @@
         android:src="@drawable/ic_add"
         app:backgroundTint="#4363ec" />
 
-    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

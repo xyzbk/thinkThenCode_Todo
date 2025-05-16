@@ -8,7 +8,13 @@
         android:icon="@drawable/ic_add"
         android:title="Add" />
     <item
+        android:id="@+id/nav_all_tasks"
+        android:icon="@drawable/ic_task"
+        android:title="All tasks"
+        />
+    <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_user"
         android:title="Profile" />
+
 </menu>

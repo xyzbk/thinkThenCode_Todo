@@ -28,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("users")
         val sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE)
 
-        // Load saved login info if remembered
         val savedEmail = sharedPreferences.getString("email", "")
         val savedPassword = sharedPreferences.getString("password", "")
         val isRemembered = sharedPreferences.getBoolean("remember", false)

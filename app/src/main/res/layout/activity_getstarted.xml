@@ -9,11 +9,6 @@
     tools:context=".MainActivity"
     android:padding="24dp">
 
-    <!-- Colored dots -->
-
-    <!-- Title -->
-
-    <!-- Subtitle -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -65,7 +60,6 @@
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <!-- CardView for task -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardVacation"
         android:layout_width="360dp"

@@ -2,9 +2,7 @@ package com.example.todoproject
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 
@@ -14,6 +12,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var loginBtn: Button
     private lateinit var signUpBtn: Button
+    private lateinit var rememberMeCheckBox: CheckBox
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +23,21 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.editTextTextPassword)
         loginBtn = findViewById(R.id.loginBtn)
         signUpBtn = findViewById(R.id.signUpBtn)
+        rememberMeCheckBox = findViewById(R.id.rememberMeCheckBox)
 
         database = FirebaseDatabase.getInstance().getReference("users")
+        val sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE)
+
+        // Load saved login info if remembered
+        val savedEmail = sharedPreferences.getString("email", "")
+        val savedPassword = sharedPreferences.getString("password", "")
+        val isRemembered = sharedPreferences.getBoolean("remember", false)
+
+        if (isRemembered) {
+            emailEditText.setText(savedEmail)
+            passwordEditText.setText(savedPassword)
+            rememberMeCheckBox.isChecked = true
+        }
 
         loginBtn.setOnClickListener {
             val email = emailEditText.text.toString().trim()
@@ -34,6 +46,16 @@ class LoginActivity : AppCompatActivity() {
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
+            }
+
+            if (rememberMeCheckBox.isChecked) {
+                val editor = sharedPreferences.edit()
+                editor.putString("email", email)
+                editor.putString("password", password)
+                editor.putBoolean("remember", true)
+                editor.apply()
+            } else {
+                sharedPreferences.edit().clear().apply()
             }
 
             loginUser(email, password)
@@ -56,12 +78,14 @@ class LoginActivity : AppCompatActivity() {
 
                     if (dbEmail != null && dbPassword != null &&
                         email == dbEmail && password == dbPassword) {
-
                         found = true
-
                         Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_SHORT).show()
+
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.putExtra("username", username)
+                        intent.putExtra("email", dbEmail)
+                        intent.putExtra("completedTasks", 5) 
+                        intent.putExtra("pendingTasks", 2)
                         startActivity(intent)
                         finish()
                         return
